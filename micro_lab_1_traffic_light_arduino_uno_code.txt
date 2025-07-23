@@ -27,5 +27,3 @@ digitalWrite(13,LOW);
 
 }
 
-
-dug dugi

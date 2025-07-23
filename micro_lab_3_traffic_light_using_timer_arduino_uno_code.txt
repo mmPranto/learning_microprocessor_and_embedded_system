@@ -1,0 +1,65 @@
+
+
+int delay_timer (int milliseconds) 
+{ 
+  int count = 0; 
+  while(1) 
+  { 
+    if(TCNT0 >= 16)  // Checking if 1 millisecond has passed 
+      { 
+        TCNT0=0; 
+        count++;  
+        if (count == milliseconds) //checking if required milliseconds delay has passed 
+        { 
+            count=0; 
+            break; // exits the loop 
+        } 
+      } 
+  } 
+  return 0; 
+} 
+
+void setup() {
+  // put your setup code here, to run once:
+    pinMode(8, OUTPUT);  
+    pinMode(10, OUTPUT); 
+    pinMode(12, OUTPUT); 
+
+    TCCR0A = 0b00000000; 
+    TCCR0B = 0b00000101; //setting pre-scaler for timer clock 
+    TCNT0=16; 
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+   //to make red LED on 
+    digitalWrite(8, HIGH);    
+    delay_timer(3000); 
+     
+    //to turn yellow LED on 
+    digitalWrite(10, HIGH); 
+    delay_timer(1000); 
+     
+    //turning off RED_PIN and YELLOW_PIN, and turning on greenLED 
+    digitalWrite(8, LOW); 
+    digitalWrite(10, LOW); 
+    digitalWrite(12, HIGH); 
+    delay_timer(3000); 
+    digitalWrite(12, LOW); 
+     
+    //for turning green Led on and off for 3 times 
+    for(int i = 0; i < 3; i++) 
+    { 
+    delay_timer(500); 
+    digitalWrite(12, HIGH); 
+    delay_timer(500); 
+    digitalWrite(12, LOW); 
+    } 
+     
+    //for turning on yellow LED 
+    digitalWrite(10, HIGH); 
+    delay_timer(1000); 
+    digitalWrite(10, LOW); 
+
+}
