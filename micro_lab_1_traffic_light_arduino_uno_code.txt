@@ -26,3 +26,6 @@ delay(3000);
 digitalWrite(13,LOW);
 
 }
+
+
+dug dugi
