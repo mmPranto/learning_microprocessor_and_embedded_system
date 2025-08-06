@@ -1,0 +1,39 @@
+
+const int IR_SENSOR_PIN = 2; 
+const int BUZZER_PIN = 3;    
+const int red_light = 12;
+const int green_light = 11;
+
+void setup() {
+  
+  pinMode(IR_SENSOR_PIN, INPUT);
+  pinMode(BUZZER_PIN, OUTPUT);
+  pinMode(red_light,OUTPUT);
+
+}
+
+void loop() {
+
+  int sensorState = digitalRead(IR_SENSOR_PIN);
+
+
+  if (sensorState == LOW) {
+
+    
+    digitalWrite(BUZZER_PIN, HIGH);
+    digitalWrite(red_light,HIGH);
+    //digitalWrite(green_light,HIGH);
+
+  } else {
+
+    digitalWrite(red_light,LOW);
+    digitalWrite(BUZZER_PIN, LOW);
+    digitalWrite(green_light,HIGH);
+    delay(500);
+    digitalWrite(green_light,LOW);
+    delay(500);
+  }
+
+
+}
+
